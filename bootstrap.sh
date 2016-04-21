@@ -1,5 +1,5 @@
 #!/bin/bash
 
 service ssh start
-$HADOOP_HOME/sbin/start-dfs.sh
+$HADOOP_PREFIX/sbin/start-dfs.sh
 bash

@@ -12,17 +12,17 @@ RUN cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 
 ADD ssh_config /etc/ssh/ssh_config
 
-ENV HADOOP_HOME /usr/local/hadoop
+ENV HADOOP_PREFIX /usr/local/hadoop
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
-ENV PATH $PATH:$HADOOP_HOME/bin
-ENV HADOOP_CONF $HADOOP_HOME/etc/hadoop
+ENV PATH $PATH:$HADOOP_PREFIX/bin
+ENV HADOOP_CONF $HADOOP_PREFIX/etc/hadoop
 
-RUN echo "export JAVA_HOME="$JAVA_HOME >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+RUN echo "export JAVA_HOME=$JAVA_HOME" >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 
-ADD core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
-ADD hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+ADD core-site.xml $HADOOP_PREFIX/etc/hadoop/core-site.xml
+ADD hdfs-site.xml $HADOOP_PREFIX/etc/hadoop/hdfs-site.xml
 
-RUN $HADOOP_HOME/bin/hadoop namenode -format
+RUN $HADOOP_PREFIX/bin/hadoop namenode -format
 
 EXPOSE 8020 9000 50010 50020 50100
 EXPOSE 50070 50075 50090 50105
