@@ -7,14 +7,14 @@ Build
 -----
 
 ```
-docker build -t younglee/hadoop .
+docker build -t younglee/hadoop:standalone .
 ```
 
 Run
 ---
 
 ```
-docker run -it -P younglee/hadoop bash
+docker run -it -P younglee/hadoop:standalone bash
 cd /usr/local/hadoop
 mkdir input
 cp etc/hadoop/*.xml input
